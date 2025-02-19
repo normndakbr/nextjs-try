@@ -19,11 +19,15 @@ const Posts = async () => {
     return (
         <>
             <h1 className="text-fuchsia-500">POST PAGE</h1>
-            <p>{posts[0].id}</p>
-            <CardList>
-                <p>Hello</p>
-                <i>Hi!</i>
-            </CardList>
+            {posts.map((post) => {
+                return (
+                    <CardList>
+                        <p>{post.id}</p>
+                        <p>{post.title}</p>
+                        <p>{post.body}</p>
+                    </CardList>
+                )
+            })}
             {/* <ViewUserButton /> */}
         </>
     )
