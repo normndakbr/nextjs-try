@@ -1,7 +1,11 @@
 "use client";
 
-const ViewUserButton = () => {
-    const handleClick = () => alert("TEST");
+interface ViewUserButtonProps {
+    userId: number
+}
+
+const ViewUserButton: React.FC<ViewUserButtonProps> = ({ userId }) => {
+    const handleClick = () => alert(`userId : ${userId}`);
 
     return (
         <>

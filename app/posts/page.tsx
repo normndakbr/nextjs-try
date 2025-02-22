@@ -1,7 +1,7 @@
 import "../components/ViewUserButton";
 import "../components/CardList";
 import CardList from "../components/CardList";
-// import ViewUserButton from "../components/ViewUserButton";
+import ViewUserButton from "../components/ViewUserButton";
 
 const base_url = "https://jsonplaceholder.typicode.com/posts"
 
@@ -13,22 +13,27 @@ interface PostsData {
 }
 
 const Posts = async () => {
-    const response = await fetch(base_url)
+    const response = await fetch(base_url, {
+        cache: "no-store",
+    });
     const posts: PostsData[] = await response.json();
 
     return (
         <>
+            <p>{new Date().toLocaleTimeString()}</p>
             <h1 className="text-fuchsia-500">POST PAGE</h1>
             {posts.map((post) => {
                 return (
-                    <CardList>
-                        <p>{post.id}</p>
-                        <p>{post.title}</p>
-                        <p>{post.body}</p>
-                    </CardList>
+                    <>
+                        <CardList>
+                            <p>{post.id}</p>
+                            <p>{post.title}</p>
+                            <p>{post.body}</p>
+                            <ViewUserButton userId={post.userId} />
+                        </CardList>
+                    </>
                 )
             })}
-            {/* <ViewUserButton /> */}
         </>
     )
 }
